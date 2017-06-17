@@ -22,7 +22,13 @@ void insertFormMarca(TNoMarca ** head) {
 	marca->descricao = (char *) malloc(sizeof(char)*100);
 
 	printf("Entre com o id: ");
-	scanf("%d",&(marca->id));
+	scanf("%d",&marca->id);
+	while( (findMarca(*head,marca->id) != NULL) )
+    { 
+		printf("ID ja esta em uso !!\n");
+		printf("Entre com o id: ");
+	    scanf("%d",&marca->id);
+    }   
 	fflush(stdin);
 	
 	printf("Entre com a descricao: ");
@@ -74,7 +80,7 @@ void removeFormMarca(TNoMarca ** head) {
 	printf("--------------------\n");
 	
 	int id;
-	printf("Entre com o id: ");
+	printf("Entre com o id da marca: ");
 	scanf("%d",&id);
 	fflush(stdin);
 	
@@ -107,15 +113,20 @@ TMarca * selectMarca() {
 		listFormMarca(head);
 		
 		int id;
-		printf("Entre com o id: ");
+		printf("Entre com o id da marca: ");
 		scanf("%d",&id);
 		fflush(stdin);
 		
 		TMarca * marca = findMarca(head,id);
 		while (marca == NULL) {
 			printf("Marca nao encontrada!\n");
+			printf("\n===== Pressione 0 para sair! =========\n");
 			printf("Entre com o id: ");
 			scanf("%d",&id);
+			if ( id == 0 )
+			{
+				break;
+			}
 			fflush(stdin);
 			marca = findMarca(head,id);
 		}

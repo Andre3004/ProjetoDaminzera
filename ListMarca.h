@@ -12,7 +12,8 @@ TMarca * createMarca(int id, char * descricao) {
 	TMarca * marca = (TMarca *) malloc(sizeof(TMarca));
 	marca->id = id;
 	marca->descricao = (char *) malloc(sizeof(char)*100);
-	if (descricao != NULL) {
+	if (descricao != NULL) 
+	{
 		strcpy(marca->descricao,descricao);
 	} else {
 		marca->descricao[0] = '\0';
@@ -49,7 +50,7 @@ void destroyNoMarca(TNoMarca * no) {
 }
 
 void printMarca(TMarca * marca) {
-	printf("Id.......: %d\n",marca->id);
+	printf("Id da marca: %d\n",marca->id);
 	printf("Descricao: %s\n",marca->descricao);
 }
 

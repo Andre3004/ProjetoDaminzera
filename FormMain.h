@@ -7,9 +7,8 @@ void showFormMain() {
 	printf("2. MODELO\n");
 	printf("3. CLIENTE\n");
 	printf("4. VEICULO\n");
-	printf("5. FORNECEDOR\n");
-	printf("6. PRODUTO\n");
-	printf("7. FUNCIONARIO\n");
+	printf("5. PRODUTO\n");
+	printf("6. SERVICO\n");
 	printf("0. SAIR\n");
 	printf("--------------------\n");
 }
@@ -22,11 +21,10 @@ void executeFormMain() {
 		switch(ch) {
 			case '1' : executeFormMarca(); break;
 			case '2' : executeFormModelo(); break;
-			case '3' : printf("\nCliente"); break;
-			case '4' : printf("\nVeiculo"); break;
-			case '5' : printf("\nFornecedor"); break;
-			case '6' : printf("\nProduto"); break;
-			case '7' : printf("\nFuncionario"); break;
+			case '3' : executeFormCliente(); break;
+			case '4' : executeFormVeiculo(); break;
+			case '5' : executeFormProduto(); break;
+			case '6' : executeFormServico(); break;
 			default  : printf("\nOpcao invalida"); break;
 		}
 		showFormMain();

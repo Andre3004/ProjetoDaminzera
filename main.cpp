@@ -7,8 +7,15 @@
 #include "ListMarca.h"
 #include "ListModelo.h"
 #include "ListCliente.h"
+#include "ListVeiculo.h"
+#include "ListProduto.h"
+#include "ListServico.h"
 #include "FormMarca.h"
 #include "FormModelo.h"
+#include "FormCliente.h"
+#include "FormVeiculo.h"
+#include "FormProduto.h"
+#include "FormServico.h"
 #include "FormMain.h"
 
 int main() {

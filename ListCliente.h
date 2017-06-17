@@ -1,10 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
-#include <string.h>
-#include <math.h>
-#include "util.h"
-
 struct TCliente 
 {
 	int id;
@@ -30,15 +23,15 @@ TCliente * createCliente(int id, char * nome, char * rg, char * cpf, char * cnpj
 	TCliente * cliente = (TCliente *) malloc(sizeof(TCliente));
 	cliente -> id = id;
 	cliente->nome = (char *) malloc(sizeof(char)*100);
-	cliente->rg =   (char *) malloc(sizeof(char)*8);
-	cliente->cpf =  (char *) malloc(sizeof(char)*11);
-	cliente->cnpj = (char *) malloc(sizeof(char)*14);
+	cliente->rg =   (char *) malloc(sizeof(char)*100);
+	cliente->cpf =  (char *) malloc(sizeof(char)*100);
+	cliente->cnpj = (char *) malloc(sizeof(char)*100);
 	cliente->logradouro = (char *) malloc(sizeof(char)*100);
 	cliente->numero = (char *) malloc(sizeof(char)*100);
 	cliente->bairro = (char *) malloc(sizeof(char)*100);
 	cliente->cidade = (char *) malloc(sizeof(char)*100);
 	cliente->estado = (char *) malloc(sizeof(char)*100);
-	if (*nome >= 3) 
+	if (nome != NULL) 
 	{
 		strcpy(cliente->nome,nome);
 	}
@@ -46,7 +39,7 @@ TCliente * createCliente(int id, char * nome, char * rg, char * cpf, char * cnpj
 	{
 		cliente->nome[0] = '\0';
 	}
-	if (*rg == 8) 
+	if (rg != NULL) 
 	{
 		strcpy(cliente->rg,rg);
 	}
@@ -54,7 +47,7 @@ TCliente * createCliente(int id, char * nome, char * rg, char * cpf, char * cnpj
 	{
 		cliente->rg[0] = '\0';
 	}
-	if (*cpf == 11) 
+	if (cpf != NULL) 
 	{
 		strcpy(cliente->cpf,cpf);
 	}
@@ -62,7 +55,7 @@ TCliente * createCliente(int id, char * nome, char * rg, char * cpf, char * cnpj
 	{
 		cliente->cpf[0] = '\0';
 	}
-	if (*cnpj == 14) 
+	if (cnpj!= NULL) 
 	{
 		strcpy(cliente->cnpj,cnpj);
 	}
@@ -70,7 +63,7 @@ TCliente * createCliente(int id, char * nome, char * rg, char * cpf, char * cnpj
 	{
 		cliente->cnpj[0] = '\0';
 	}
-	if (*logradouro >= 3) 
+	if (logradouro != NULL) 
 	{
 		strcpy(cliente->logradouro,logradouro);
 	}
@@ -78,7 +71,7 @@ TCliente * createCliente(int id, char * nome, char * rg, char * cpf, char * cnpj
 	{
 		cliente->logradouro[0] = '\0';
 	}
-	if (*numero != NULL) 
+	if (numero != NULL) 
 	{
 		strcpy(cliente->numero,numero);
 	}
@@ -86,7 +79,7 @@ TCliente * createCliente(int id, char * nome, char * rg, char * cpf, char * cnpj
 	{
 		cliente->numero[0] = '\0';
 	}
-	if (*bairro >= 3) 
+	if (bairro != NULL) 
 	{
 		strcpy(cliente->bairro,bairro);
 	}
@@ -94,7 +87,7 @@ TCliente * createCliente(int id, char * nome, char * rg, char * cpf, char * cnpj
 	{
 		cliente->bairro[0] = '\0';
 	}
-	if (*cidade >= 3) 
+	if (cidade != NULL) 
 	{
 		strcpy(cliente->cidade,cidade);
 	}
@@ -102,7 +95,7 @@ TCliente * createCliente(int id, char * nome, char * rg, char * cpf, char * cnpj
 	{
 		cliente->cidade[0] = '\0';
 	}
-	if (*estado >= 3) 
+	if (estado != NULL) 
 	{
 		strcpy(cliente->estado,estado);
 	}
@@ -169,7 +162,7 @@ void destroyNoCliente(TNoCliente * no)
 
 void printCliente(TCliente * cliente) 
 {
-	printf("Id.......: %d\n",cliente->id);
+	printf("Id do cliente: %d\n",cliente->id);
 	printf("Nome: %s\n",cliente->nome);
 	printf("RG: %s\n",cliente->rg);
 	printf("CPF: %s\n",cliente->cpf);
@@ -303,14 +296,23 @@ int saveToFileCliente(TNoCliente * head, char * path)
 			fputs("\n",f);			
 			
 			fputs(pAux->cliente->nome,f);
+			fputs("\n",f);	
 			fputs(pAux->cliente->rg,f);
+			fputs("\n",f);	
 			fputs(pAux->cliente->cpf,f);
+			fputs("\n",f);	
 			fputs(pAux->cliente->cnpj,f);
+			fputs("\n",f);	
 			fputs(pAux->cliente->logradouro,f);
+			fputs("\n",f);	
 			fputs(pAux->cliente->numero,f);
+			fputs("\n",f);	
 			fputs(pAux->cliente->bairro,f);
+			fputs("\n",f);	
 			fputs(pAux->cliente->cidade,f);
+			fputs("\n",f);	
 			fputs(pAux->cliente->estado,f);
+				
 			
 			pAux = pAux->prox;
 		}
@@ -330,31 +332,40 @@ int loadFromFileCliente(TNoCliente ** head, char * path)
 		TCliente * cliente = createCliente(0,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 		while (!feof(f)) 
 		{
-			fgets(str,100,f);
-			removeEnter(str);
-			cliente->id = StrToInt(str); //converte de string para int
+		fgets(str,100,f);
+		removeEnter(str);
+		cliente->id = StrToInt(str); //converte de string para int
 			
-			fgets(cliente->nome,100,f);
-			fgets(cliente->rg,8,f);
-			fgets(cliente->cpf,11,f);
-			fgets(cliente->cnpj,14,f);
-			fgets(cliente->logradouro,100,f);
-			fgets(cliente->numero,100,f);
-			fgets(cliente->bairro,100,f);
-			fgets(cliente->cidade,100,f);
-			fgets(cliente->estado,100,f);
+		fgets(cliente->nome,100,f);
 			
-			removeEnter(cliente->nome);
-			removeEnter(cliente->rg);
-			removeEnter(cliente->cpf);
-			removeEnter(cliente->cnpj);
-			removeEnter(cliente->logradouro);
-			removeEnter(cliente->numero);
-			removeEnter(cliente->bairro);
-			removeEnter(cliente->cidade);
-			removeEnter(cliente->estado);
+		fgets(cliente->rg,100,f);
+		
+		fgets(cliente->cpf,100,f);
 			
-			insertOrderedCliente(head,cliente);
+		fgets(cliente->cnpj,100,f);
+		
+		fgets(cliente->logradouro,100,f);
+			
+		fgets(cliente->numero,100,f);
+			
+		fgets(cliente->bairro,100,f);
+			
+		fgets(cliente->cidade,100,f);
+		
+		fgets(cliente->estado,100,f);
+		
+			
+		removeEnter(cliente->nome);
+		removeEnter(cliente->rg);
+		removeEnter(cliente->cpf);
+		removeEnter(cliente->cnpj);
+		removeEnter(cliente->logradouro);
+		removeEnter(cliente->numero);
+		removeEnter(cliente->bairro);
+		removeEnter(cliente->cidade);
+		removeEnter(cliente->estado);
+			
+		insertOrderedCliente(head,cliente);
 		}
 		destroyCliente(cliente);
 		fclose(f);
@@ -375,6 +386,8 @@ void destroyListCliente(TNoCliente ** head)
 	}
 	*head = NULL;
 }
+
+
 
 
 

@@ -13,10 +13,13 @@ TModelo * createModelo(int id, char * descricao,TMarca * marca) {
 	TModelo * modelo = (TModelo *) malloc(sizeof(TModelo));
 	modelo->id = id;
 	modelo->descricao = (char *) malloc(sizeof(char)*100);
-	if (descricao != NULL) {
+	if (descricao != NULL)
+    {
 		strcpy(modelo->descricao,descricao);
-	}
+	}else
+	{
 	modelo->descricao[0] = '\0';
+    }
 	
 	modelo->marca = cloneMarca(marca);
 	
@@ -53,10 +56,12 @@ void destroyNoModelo(TNoModelo * no) {
 }
 
 void printModelo(TModelo * modelo) {
-	printf("Id.......: %d\n",modelo->id);
-	printf("Descricao: %s\n",modelo->descricao);
-	printf("Marca\n");
 	printMarca(modelo->marca);
+
+	printf("Id do modelo : %d\n",modelo->id);
+	printf("Descricao: %s\n",modelo->descricao);
+	
+	
 }
 
 void insertModelo(TNoModelo ** head, TModelo * modelo) {

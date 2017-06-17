@@ -1,13 +1,3 @@
 
-99
-FERRARI
 1
-FORD
-100
-GM
-88
-KIA
-87
-MERCEDES
-2
-VW
+fiat

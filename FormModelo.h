@@ -21,21 +21,27 @@ void insertFormModelo(TNoModelo ** head) {
 	TModelo * modelo = (TModelo *) malloc(sizeof(TModelo));
 	modelo->descricao = (char *) malloc(sizeof(char)*100);
 
-	printf("Entre com o id: ");
+	printf("Entre com o id do modelo: ");
 	scanf("%d",&(modelo->id));
 	fflush(stdin);
 	
 	printf("Entre com a descricao: ");
 	gets(modelo->descricao);
+	fflush(stdin);
 	
 	modelo->marca = selectMarca();
-	
-	insertOrderedModelo(head,modelo);
-	
-	destroyModelo(modelo);
-	
-	printf("Modelo inserido com sucesso!");
-	getch();
+	if ( modelo->marca == NULL )
+	{
+		printf("\n Nao foi possivel cadastrar a marca, Erro!!");
+    	getch();
+	}
+	else
+	{
+		insertOrderedModelo(head,modelo);
+		destroyModelo(modelo);
+		printf("Modelo inserido com sucesso!");
+		getch();
+	}
 }
 
 void findFormModelo(TNoModelo * head) {
@@ -45,7 +51,7 @@ void findFormModelo(TNoModelo * head) {
 	printf("--------------------\n");
 	
 	int id;
-	printf("Entre com o id: ");
+	printf("Entre com o id do modelo: ");
 	scanf("%d",&id);
 	fflush(stdin);
 	
@@ -76,7 +82,7 @@ void removeFormModelo(TNoModelo ** head) {
 	printf("--------------------\n");
 	
 	int id;
-	printf("Entre com o id: ");
+	printf("Entre com o id do modelo: ");
 	scanf("%d",&id);
 	fflush(stdin);
 	
@@ -109,21 +115,26 @@ TModelo * selectModelo() {
 		listFormModelo(head);
 		
 		int id;
-		printf("Entre com o id: ");
+		printf("Entre com o id do modelo: ");
 		scanf("%d",&id);
 		fflush(stdin);
 		
 		TModelo * modelo = findModelo(head,id);
-		while (modelo == NULL) {
+		while ( (modelo == NULL) ) {
 			printf("Modelo nao encontrado!\n");
+			printf("\n===== Pressione 0 para sair! =========\n");
 			printf("Entre com o id: ");
 			scanf("%d",&id);
+			if ( id == 0 ) 
+			{
+				break;
+			}
 			fflush(stdin);
 			modelo = findModelo(head,id);
 		}
 		return modelo;
 	}
-	return createModelo(0,NULL,NULL);
+	return NULL;
 }
 
 void loadFormModelo(TNoModelo ** head) {
