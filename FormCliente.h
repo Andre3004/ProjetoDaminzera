@@ -41,7 +41,14 @@ void insertFormCliente(TNoCliente ** head) {
 	fflush(stdin);	
 	printf("Entre com a nome: ");
 	gets(cliente->nome);
-		
+	while( (strlen(cliente->nome) < 3) )
+    { 
+		printf("Nome invalido !!\n");
+		printf("Entre com o nome: ");
+		gets(cliente->nome);
+    }   
+	
+	fflush(stdin);	
 	printf("Entre com o RG: ");
 	gets(cliente->rg);
     while (strlen(cliente->rg) != 8 )
@@ -50,31 +57,31 @@ void insertFormCliente(TNoCliente ** head) {
 		printf("\nEntre com o RG: ");
 		gets(cliente->rg);
 	}
+	fflush(stdin);
 	
 	char tipo;
 	printf("FISICA OU JURIDICA(f/j) :");
 	scanf("%c",&tipo);
+	fflush(stdin);
     while (((tipo != 'j') && (tipo != 'J')) &&  ((tipo != 'f') && (tipo != 'F')))
     {
-    fflush(stdin);
-    printf("tipo invalido:");
-	printf("\nFISICA OU JURIDICA(f/j) :");
-	scanf("%c",&tipo);
+	    printf("tipo invalido:");
+		printf("\nFISICA OU JURIDICA(f/j) :");
+		scanf("%c",&tipo);
 	}
 	if ((tipo == 'f') || (tipo == 'F'))
 	{
-	fflush(stdin);	
-	printf("Entre com o CPF: ");
-	gets(cliente->cpf);
-	cliente->cnpj=NULL;
-	while (strlen(cliente->cpf) != 11 )
-	{	
-		printf("\nCPF Invalido(o numero do CPF deve conter 11 caracteres)");
-		printf("\nEntre com o CPF: ");
+		printf("Entre com o CPF: ");
 		gets(cliente->cpf);
-    }
+		cliente->cnpj=NULL;
+		while (strlen(cliente->cpf) != 11 )
+		{	
+			printf("\nCPF Invalido(o numero do CPF deve conter 11 caracteres)");
+			printf("\nEntre com o CPF: ");
+			gets(cliente->cpf);
+	    }
     }  
- 
+    fflush(stdin);
  
     if ((tipo == 'J') || (tipo == 'j'))
 	{	
@@ -89,50 +96,57 @@ void insertFormCliente(TNoCliente ** head) {
 		gets(cliente->cnpj);
 	}
 	} 
-
+    fflush(stdin);
+    
 	printf("Entre com o logradouro: ");
 	gets(cliente->logradouro);
-	while (strlen(cliente->logradouro) <= 3  )
+	while (strlen(cliente->logradouro) < 3  )
 	{
-		printf("Logradouro Invalido");
+		printf("Logradouro Invalido\n");
 		printf("\nEntre com o logradouro: ");
 		gets(cliente->logradouro);
 	}
+	fflush(stdin);
 	
 	printf("Entre com a numero: ");
 	gets(cliente->numero);
-	while (strlen(cliente->numero) <=0  )
+	while (cliente->numero < 0  )
 	{
 		printf("Numero Invalido");
 		printf("Entre com o Numero: ");
 		gets(cliente->numero);
 	}
+	fflush(stdin);
 	
 	printf("Entre com a bairro: ");
 	gets(cliente->bairro);
 	while (strlen(cliente->bairro) < 3  )
 	{
 		printf("Bairro Invalido");
-		printf("Entre com o bairro: ");
+		printf("\nEntre com o bairro: ");
 		gets(cliente->bairro);
 	}
+	fflush(stdin);
+	
 	printf("Entre com a cidade: ");
 	gets(cliente->cidade);
 	while (strlen(cliente->cidade) < 3  )
 	{
 		printf("Cidade Invalida");
-		printf("Entre com a Cidade: ");
+		printf("\nEntre com a Cidade: ");
 		gets(cliente->cidade);
 	}
+	fflush(stdin);
+	
 	printf("Entre com a estado: ");
 	gets(cliente->estado);
 	while (strlen(cliente->estado) < 3   )
 	{
 		printf("Estado Invalido");
-		printf("Entre com o estado: ");
+		printf("\nentre com o estado: ");
 		gets(cliente->estado);
 	}
-	
+	fflush(stdin);
 	
 	insertOrderedCliente(head,cliente);	
 	destroyCliente(cliente);	

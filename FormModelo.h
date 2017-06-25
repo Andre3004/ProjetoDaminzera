@@ -23,10 +23,22 @@ void insertFormModelo(TNoModelo ** head) {
 
 	printf("Entre com o id do modelo: ");
 	scanf("%d",&(modelo->id));
+	while( (findModelo(*head,modelo->id) != NULL) )
+    { 
+		printf("ID ja esta em uso !!\n");
+		printf("Entre com o id: ");
+	    scanf("%d",&modelo->id);
+    }   
 	fflush(stdin);
-	
 	printf("Entre com a descricao: ");
 	gets(modelo->descricao);
+	while( (strlen(modelo->descricao) < 3) )
+    { 
+		printf("Descricao invalida !!\n");
+		printf("Entre com a descricao: ");
+		gets(modelo->descricao);
+    }   
+	
 	fflush(stdin);
 	
 	modelo->marca = selectMarca();

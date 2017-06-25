@@ -33,7 +33,7 @@ void insertFormServico(TNoServico ** head) {
 	
 	printf("Entre com a quantidade de horas: ");
 	scanf("%d",&Servico->qtdHrs);
-	while ((Servico->qtdHrs) <= 0)
+	while ((Servico->qtdHrs) < 0)
 	{
 		printf("quantidade de horas invalido");	
 		fflush(stdin);
@@ -43,7 +43,7 @@ void insertFormServico(TNoServico ** head) {
 
 	printf("Entre com o valor: ");
 	scanf("%d",&Servico->valor);
-    while ((Servico->valor) <= 0)
+    while ((Servico->valor) < 0)
 	{
 		printf("valor invalido");	
 		printf("\nEntre com o valor: ");
@@ -52,7 +52,7 @@ void insertFormServico(TNoServico ** head) {
     
     printf("Entre com a descricao: ");
 	scanf("%s",Servico->descricao);
-    while (strlen(Servico->descricao) < 2)
+    while (strlen(Servico->descricao) < 3)
 	{
 		printf("descricao invalida");	
 		printf("\nEntre com a descricao: ");

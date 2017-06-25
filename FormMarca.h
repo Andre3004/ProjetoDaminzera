@@ -33,7 +33,13 @@ void insertFormMarca(TNoMarca ** head) {
 	
 	printf("Entre com a descricao: ");
 	gets(marca->descricao);
-	
+	while( (strlen(marca->descricao) < 3) )
+    { 
+		printf("Descricao invalida !!\n");
+		printf("Entre com a descricao: ");
+		gets(marca->descricao);
+    }   
+	fflush(stdin);
 	insertOrderedMarca(head,marca);
 	
 	destroyMarca(marca);

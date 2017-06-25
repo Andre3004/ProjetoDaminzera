@@ -374,6 +374,7 @@ int loadFromFileCliente(TNoCliente ** head, char * path)
 	return 0;
 }
 
+
 void destroyListCliente(TNoCliente ** head) 
 {
 	TNoCliente * pAnt = *head;

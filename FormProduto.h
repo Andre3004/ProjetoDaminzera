@@ -43,7 +43,7 @@ void insertFormProduto(TNoProduto ** head) {
 
 	printf("Entre com o valor: ");
 	scanf("%d",&Produto->valor);
-    while ((Produto->valor) <= 0)
+    while ((Produto->valor) < 0)
 	{
 		printf("valor invalido");	
 		printf("\nEntre com o valor: ");
@@ -52,7 +52,7 @@ void insertFormProduto(TNoProduto ** head) {
     
     printf("Entre com a descricao: ");
 	scanf("%s",Produto->descricao);
-    while (strlen(Produto->descricao) < 2)
+    while (strlen(Produto->descricao) < 3)
 	{
 		printf("descricao invalida");	
 		printf("\nEntre com a descricao: ");
